@@ -9,5 +9,5 @@ pip install scrapy
 ## spiderの使い方の例
 
 
-## LISENCE
+## LICENSE
 - MIT
