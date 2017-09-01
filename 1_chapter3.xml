@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml producer="poppler" version="0.24.5">
+<page number="1" position="absolute" top="0" left="0" height="1262" width="892">
+	<fontspec id="0" size="19" family="Times" color="#000000"/>
+	<fontspec id="1" size="12" family="Times" color="#000000"/>
+	<fontspec id="2" size="13" family="Times" color="#000000"/>
+	<fontspec id="3" size="7" family="Times" color="#000000"/>
+	<fontspec id="4" size="11" family="Times" color="#000000"/>
+<image top="162" left="462" width="359" height="337" src="1_chapter3-1_1.png"/>
+<text top="101" left="354" width="177" height="21" font="0">第３章  データ同化 </text>
+<text top="124" left="100" width="4" height="20" font="1"> </text>
+<text top="143" left="258" width="6" height="21" font="0"> </text>
+<text top="168" left="85" width="135" height="16" font="2">3.1  データ同化概要</text>
+<text top="167" left="221" width="5" height="10" font="3"><a href="1_chapter3.html#1">1</a></text>
+<text top="191" left="100" width="330" height="15" font="1">「データ同化」とは、観測値と第一推定値を用い</text>
+<text top="212" left="85" width="345" height="15" font="1">て、整合のとれた、ある時刻の大気状態を表す物理</text>
+<text top="233" left="85" width="345" height="15" font="1">量の分布（これを「解析値」という）を求めること</text>
+<text top="254" left="85" width="321" height="15" font="1">である。求まった解析値は数値予報モデル（第</text>
+<text top="251" left="406" width="23" height="20" font="1">4章</text>
+<text top="275" left="85" width="345" height="15" font="1">参照）の初期値として使用される。気象観測はさま</text>
+<text top="296" left="85" width="251" height="15" font="1">ざまな場所や時刻で行われている（第</text>
+<text top="293" left="336" width="94" height="20" font="1">2章参照）が、</text>
+<text top="317" left="85" width="345" height="15" font="1">現在の数値予報モデルの格子点数と比較すれば一</text>
+<text top="338" left="85" width="345" height="15" font="1">般的にはまばらであり、観測データの分布も不均一</text>
+<text top="359" left="85" width="345" height="15" font="1">であるため、数値予報モデルに適した初期値がその</text>
+<text top="380" left="85" width="345" height="15" font="1">まま得られるわけではない。これらのデータを用い</text>
+<text top="401" left="85" width="345" height="15" font="1">て、数値予報モデルに利用可能な、空間的・時間的</text>
+<text top="422" left="85" width="345" height="15" font="1">により均一な形式の初期値が、ある一定の計算手法</text>
+<text top="443" left="85" width="161" height="15" font="1">を用いて作成される。図</text>
+<text top="440" left="247" width="183" height="20" font="1">3.1.1にデータ同化の模式図</text>
+<text top="464" left="85" width="345" height="15" font="1">を示す。人の主観が入らないと言う意味で、「客観</text>
+<text top="485" left="85" width="345" height="15" font="1">解析」と呼ぶこともある。これに対して、観測値か</text>
+<text top="506" left="85" width="352" height="15" font="1">ら人の手で天気図を書くことを「主観解析」と呼ぶ。</text>
+<text top="503" left="430" width="4" height="20" font="1"> </text>
+<text top="168" left="226" width="5" height="16" font="2"><a href="1_chapter3.html#1"> </a></text>
+<text top="527" left="100" width="330" height="15" font="1">観測データの数や種類には限りがある。最近のス</text>
+<text top="548" left="85" width="345" height="15" font="1">ーパーコンピュータの性能向上とともに数値予報</text>
+<text top="569" left="85" width="345" height="15" font="1">モデルが高分解能化し、貴重な観測データから有効</text>
+<text top="590" left="85" width="345" height="15" font="1">な情報を引き出すという過程はより重要さを増し</text>
+<text top="611" left="85" width="345" height="15" font="1">ている。前述の通り観測値だけでは、十分精度の高</text>
+<text top="632" left="85" width="345" height="15" font="1">い解析ができない。このため、前の初期時刻の予報</text>
+<text top="653" left="85" width="345" height="15" font="1">結果を第一推定値として用い、これを修正するとい</text>
+<text top="674" left="85" width="345" height="15" font="1">うことが行われる。このデータ同化の際に、予報値</text>
+<text top="695" left="85" width="345" height="15" font="1">だけでなく観測値にも誤差があると考えられるた</text>
+<text top="716" left="85" width="360" height="15" font="1">め、観測値を単純に解析値と置き換えるのではなく、</text>
+<text top="737" left="85" width="345" height="15" font="1">観測値と第一推定値との間に解析値を求めること</text>
+<text top="758" left="85" width="345" height="15" font="1">になる。解析値が観測値側に寄るかそれとも第一推</text>
+<text top="779" left="85" width="345" height="15" font="1">定値側に寄るかは、データ同化を実行する際に与え</text>
+<text top="800" left="85" width="345" height="15" font="1">られる「観測誤差」と「背景誤差」（第一推定値の</text>
+<text top="821" left="85" width="87" height="15" font="1">誤差）の設定</text>
+<text top="820" left="172" width="5" height="13" font="3"><a href="1_chapter3.html#1">2</a></text>
+<text top="947" left="100" width="330" height="15" font="1">データ同化手法として、以前は簡便な手法が用い</text>
+<text top="968" left="85" width="345" height="15" font="1">られていた。しかし近年ではデータ同化の予報精度</text>
+<text top="989" left="85" width="345" height="15" font="1">に与える影響が大きいことが、とりわけ短期予報・</text>
+<text top="1010" left="85" width="345" height="15" font="1">週間天気予報の範囲では強く認識されるようにな</text>
+<text top="1031" left="85" width="345" height="15" font="1">ったため、より精度の良い解析値が得られる高度な</text>
+<text top="1052" left="85" width="345" height="15" font="1">手法が用いられるようになってきた。観測で得られ</text>
+<text top="1073" left="85" width="353" height="15" font="1">る物理量と数値予報モデルが必要とする風、気温、</text>
+<text top="821" left="178" width="252" height="15" font="1"><a href="1_chapter3.html#1">に</a>よって決まることになる。観測誤差</text>
+<text top="842" left="85" width="345" height="15" font="1">が背景誤差より小さく設定されれば、解析値は観測</text>
+<text top="863" left="85" width="345" height="15" font="1">データ側に寄り、逆に観測誤差が大きく設定されれ</text>
+<text top="884" left="85" width="345" height="15" font="1">ば、解析値は第一推定値側に寄ることになる。図</text>
+<text top="902" left="85" width="345" height="20" font="1">3.1.1の模式図をより具体的に示したのが図3.1.2で</text>
+<text top="926" left="85" width="45" height="15" font="1">ある。</text>
+<text top="923" left="130" width="4" height="20" font="1"> </text>
+<text top="1092" left="85" width="220" height="20" font="1">                                                      </text>
+<text top="1112" left="85" width="5" height="12" font="3">1</text>
+<text top="1111" left="90" width="214" height="18" font="4">  第 3 章  室井  ちあし、佐藤  芳昭 </text>
+<text top="1130" left="85" width="5" height="12" font="3">2</text>
+<text top="1129" left="90" width="340" height="18" font="4">  ここでいう「誤差」は、統計的に得られる誤差の大きさ</text>
+<text top="1150" left="85" width="149" height="13" font="4">の期待値のことである。</text>
+<text top="1147" left="234" width="4" height="18" font="4"> </text>
+<text top="547" left="462" width="345" height="15" font="1">水蒸気量といった物理量とは、特にリモートセンシ</text>
+<text top="568" left="462" width="345" height="15" font="1">ング技術を応用した観測では必ずしも対応してお</text>
+<text top="589" left="462" width="345" height="15" font="1">らず、従来は数値予報モデルが必要とする物理量に</text>
+<text top="610" left="462" width="345" height="15" font="1">いったん変換することにより同化を行ってきた。し</text>
+<text top="631" left="462" width="345" height="15" font="1">かしながら高度な手法を採用することで観測され</text>
+<text top="652" left="462" width="345" height="15" font="1">た物理量を直接同化することが可能となり、これに</text>
+<text top="673" left="462" width="345" height="15" font="1">より多くの種類の観測が利用できるようになって</text>
+<text top="694" left="462" width="45" height="15" font="1">きた。</text>
+<text top="692" left="507" width="4" height="20" font="1"> </text>
+<text top="715" left="462" width="345" height="15" font="1">  データ同化により作成される解析値は予報モデ</text>
+<text top="736" left="462" width="345" height="15" font="1">ルの初期値として利用されるほか、観測データのな</text>
+<text top="757" left="462" width="345" height="15" font="1">い領域や要素についても、均一で使いやすい形式で</text>
+<text top="779" left="462" width="345" height="15" font="1">提供されることから、実況値の代替として、検証・</text>
+<text top="799" left="462" width="321" height="15" font="1">評価・監視などにも幅広く利用されている（第</text>
+<text top="797" left="784" width="23" height="20" font="1">1章</text>
+<text top="820" left="462" width="345" height="15" font="1">参照）。解析値は観測値そのものではなく、第一推</text>
+<text top="842" left="462" width="345" height="15" font="1">定値をもとに様々な過程を通じて観測値をなるべ</text>
+<text top="862" left="462" width="345" height="15" font="1">く適切に反映させたものであり、必ず誤差が含まれ</text>
+<text top="883" left="462" width="345" height="15" font="1">ている。したがってその利用にあたっては、これが</text>
+<text top="905" left="462" width="345" height="15" font="1">常に真の値と受け取るのではなく、観測データの持</text>
+<text top="925" left="462" width="345" height="15" font="1">つ誤差や第一推定値の特性などに十分留意する必</text>
+<text top="946" left="462" width="75" height="15" font="1">要がある。</text>
+<text top="944" left="537" width="4" height="20" font="1"> </text>
+<text top="966" left="462" width="3" height="13" font="3"> </text>
+<text top="987" left="462" width="140" height="16" font="2">3.2  データ同化手法 </text>
+<text top="1010" left="462" width="345" height="15" font="1">  データ同化は、数少ない観測データからできるだ</text>
+<text top="1031" left="462" width="345" height="15" font="1">け多くの情報を取り出して適切に解析値に反映さ</text>
+<text top="1052" left="462" width="345" height="15" font="1">せようという過程である。可能な限り観測データの</text>
+<text top="1073" left="462" width="345" height="15" font="1">数は多いことが望ましいが、一方で現象の時間・空</text>
+<text top="1094" left="462" width="196" height="15" font="1">間スケールと予測可能性（第</text>
+<text top="1091" left="658" width="157" height="20" font="1">1.4節）を考慮すれば、</text>
+<text top="1115" left="462" width="345" height="15" font="1">空間分解能の高い解析・予測ほど迅速に処理する必</text>
+<text top="1136" left="462" width="345" height="15" font="1">要がある。したがって、利用目的や求められる迅速</text>
+<text top="484" left="821" width="4" height="20" font="1"> </text>
+<text top="507" left="548" width="14" height="13" font="4">図</text>
+<text top="504" left="565" width="172" height="18" font="4">3.1.1  データ同化の模式図 </text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1262" width="892">
+	<fontspec id="5" size="8" family="Times" color="#c0504d"/>
+	<fontspec id="6" size="10" family="Times" color="#008000"/>
+	<fontspec id="7" size="8" family="Times" color="#000000"/>
+	<fontspec id="8" size="10" family="Times" color="#0070c0"/>
+	<fontspec id="9" size="12" family="Times" color="#ff0000"/>
+	<fontspec id="10" size="10" family="Times" color="#e46c0a"/>
+	<fontspec id="11" size="7" family="Times" color="#e46c0a"/>
+	<fontspec id="12" size="7" family="Times" color="#ff0000"/>
+<image top="115" left="176" width="541" height="378" src="1_chapter3-2_1.png"/>
+<text top="577" left="85" width="345" height="15" font="1">性に応じて、いくつかのデータ同化手法が用いられ</text>
+<text top="598" left="85" width="30" height="15" font="1">る。</text>
+<text top="595" left="115" width="4" height="20" font="1"> </text>
+<text top="619" left="100" width="330" height="15" font="1">ここでは、気象庁のデータ同化で採用されている</text>
+<text top="640" left="85" width="345" height="15" font="1">手法を中心に、データ同化手法について簡単に解説</text>
+<text top="661" left="85" width="45" height="15" font="1">する。</text>
+<text top="658" left="130" width="4" height="20" font="1"> </text>
+<text top="679" left="100" width="4" height="20" font="1"> </text>
+<text top="702" left="85" width="132" height="16" font="2">3.2.1  4次元変分法 </text>
+<text top="724" left="100" width="15" height="15" font="1">「</text>
+<text top="721" left="115" width="314" height="20" font="1">4次元変分法」は、数値予報モデルで用いられ</text>
+<text top="745" left="85" width="345" height="15" font="1">ている物理法則を活用して、空間的・時間的に広範</text>
+<text top="766" left="85" width="345" height="15" font="1">囲かつ様々な種類の観測データを同化する手法で</text>
+<text top="787" left="85" width="75" height="15" font="1">ある（露木</text>
+<text top="784" left="160" width="150" height="20" font="1">  1997;  露木  2002）。 </text>
+<text top="808" left="100" width="76" height="15" font="1">大気現象は</text>
+<text top="805" left="177" width="253" height="20" font="1">3次元空間（東西・南北・高さ方向）</text>
+<text top="829" left="85" width="290" height="15" font="1">に存在し、時々刻々と移り変わっている。</text>
+<text top="826" left="376" width="54" height="20" font="1">3次元空</text>
+<text top="850" left="85" width="345" height="15" font="1">間の様々な地点、またいろいろな時刻において観測</text>
+<text top="871" left="85" width="345" height="15" font="1">されるデータを活用することにより、大気の状態を</text>
+<text top="892" left="85" width="31" height="15" font="1">空間</text>
+<text top="889" left="116" width="314" height="20" font="1">3次元＋時間の4次元的にとらえることによっ</text>
+<text top="913" left="85" width="345" height="15" font="1">て、より精度の高い解析値を得ることが可能となっ</text>
+<text top="934" left="85" width="60" height="15" font="1">ている。</text>
+<text top="932" left="145" width="4" height="20" font="1"> </text>
+<text top="952" left="100" width="330" height="20" font="1">4次元変分法の考え方とおおまかな処理の流れを</text>
+<text top="976" left="85" width="75" height="15" font="1">それぞれ図</text>
+<text top="973" left="160" width="270" height="20" font="1">3.2.1と図3.2.2に示す。4次元変分法を用</text>
+<text top="997" left="85" width="345" height="15" font="1">いたデータ同化では、数値予報モデルを実行して少</text>
+<text top="1018" left="85" width="345" height="15" font="1">しずつ解析値を修正させることにより、第一推定値</text>
+<text top="1039" left="85" width="345" height="15" font="1">と観測値との間でもっともバランスのとれた最適</text>
+<text top="1060" left="85" width="345" height="15" font="1">な解析値を探すという求め方を行う。最適であるか</text>
+<text top="1081" left="85" width="345" height="15" font="1">どうかの指標には、「評価関数」を用いる。評価関</text>
+<text top="1102" left="85" width="345" height="15" font="1">数は、現在の解析値が第一推定値や観測値からどの</text>
+<text top="1123" left="85" width="345" height="15" font="1">くらい離れているかを、定量的に示す数値で、小さ</text>
+<text top="1144" left="85" width="345" height="15" font="1">いほどより適しているとみなす。最初に解析値のた</text>
+<text top="1081" left="462" width="345" height="15" font="1">たき台として第一推定値を用いて数値予報モデル</text>
+<text top="1102" left="462" width="345" height="15" font="1">を実行し、あらかじめ設定された時間範囲内にある</text>
+<text top="1123" left="462" width="345" height="15" font="1">全ての観測からその予報がどの程度離れているか</text>
+<text top="1144" left="462" width="345" height="15" font="1">を評価関数で判断する。なお、この時間範囲を「同</text>
+<text top="557" left="638" width="4" height="20" font="1"> </text>
+<text top="711" left="808" width="4" height="20" font="1"> </text>
+<text top="732" left="542" width="14" height="13" font="4">図</text>
+<text top="729" left="559" width="183" height="18" font="4">3.2.1  4 次元変分法の考え方 </text>
+<text top="703" left="583" width="64" height="10" font="5">同化ウィンドウ</text>
+<text top="619" left="476" width="63" height="12" font="6">第一推定値</text>
+<text top="712" left="771" width="21" height="10" font="7">時間</text>
+<text top="586" left="666" width="38" height="12" font="8">観測値</text>
+<text top="694" left="535" width="38" height="12" font="8">観測値</text>
+<text top="605" left="716" width="43" height="14" font="9">解析値</text>
+<text top="653" left="589" width="117" height="12" font="10">繰り返し計算で観測値</text>
+<text top="663" left="596" width="103" height="12" font="10">に徐々に寄せていく</text>
+<text top="477" left="717" width="4" height="20" font="1"> </text>
+<text top="502" left="118" width="13" height="13" font="4">図</text>
+<text top="499" left="135" width="638" height="18" font="4">3.1.2  データ同化の詳細な説明図。A:観測値（4 点の○）、B:第一推定値（格子）、C:第一推定値 B を、観</text>
+<text top="520" left="131" width="27" height="13" font="4">測値</text>
+<text top="517" left="162" width="608" height="18" font="4">A を踏まえて修正して得られた解析値（○は観測値）、D:観測値と第一推定値の差(A-B)、E:第一推定</text>
+<text top="538" left="131" width="203" height="13" font="4">値の修正量(解析インクリメント)</text>
+<text top="535" left="334" width="57" height="18" font="4"> (C-B)。 </text>
+<text top="1017" left="815" width="4" height="20" font="1"> </text>
+<text top="1041" left="528" width="14" height="13" font="4">図</text>
+<text top="1039" left="546" width="210" height="18" font="4">3.2.2  4 次元変分法の処理の流れ </text>
+<text top="798" left="605" width="46" height="10" font="3">積分１回目</text>
+<text top="798" left="730" width="40" height="10" font="11">評価関数</text>
+<text top="798" left="770" width="20" height="10" font="3">計算</text>
+<text top="817" left="602" width="59" height="10" font="3">逆方向に積分</text>
+<text top="834" left="605" width="46" height="10" font="3">積分２回目</text>
+<text top="834" left="730" width="40" height="10" font="11">評価関数</text>
+<text top="834" left="770" width="20" height="10" font="3">計算</text>
+<text top="853" left="600" width="59" height="10" font="3">逆方向に積分</text>
+<text top="842" left="494" width="50" height="10" font="3">解析値修正</text>
+<text top="806" left="494" width="50" height="10" font="3">解析値修正</text>
+<text top="884" left="608" width="45" height="11" font="3">積分n回目</text>
+<text top="884" left="730" width="40" height="10" font="11">評価関数</text>
+<text top="884" left="770" width="20" height="10" font="3">計算</text>
+<text top="903" left="602" width="59" height="10" font="3">逆方向に積分</text>
+<text top="892" left="494" width="50" height="10" font="3">解析値修正</text>
+<text top="925" left="583" width="115" height="10" font="3">最終的に積分し解析値作成</text>
+<text top="789" left="497" width="32" height="10" font="3">スタート</text>
+<text top="917" left="741" width="28" height="10" font="3">ゴール</text>
+<text top="952" left="700" width="0" height="10" font="11">評価関数</text>
+<text top="1020" left="719" width="75" height="10" font="3">繰り返し計算回数</text>
+<text top="943" left="727" width="69" height="10" font="3">評価関数の値は</text>
+<text top="954" left="727" width="81" height="10" font="3">徐々に下がっていく</text>
+<text top="802" left="477" width="0" height="10" font="3">処理の</text>
+<text top="831" left="477" width="0" height="10" font="3">流れ</text>
+<text top="953" left="605" width="60" height="10" font="12">同化ウィンドウ</text>
+</page>
+<page number="3" position="absolute" top="0" left="0" height="1262" width="892">
+<text top="106" left="85" width="345" height="15" font="1">化ウィンドウ」という。次に、数値予報モデルを逆</text>
+<text top="127" left="85" width="345" height="15" font="1">方向に実行して、評価関数をより小さくするにはど</text>
+<text top="148" left="85" width="345" height="15" font="1">のような修正を解析値に与えればよいかを探索す</text>
+<text top="169" left="85" width="345" height="15" font="1">る。そして、そのような修正を加えた解析値で、再</text>
+<text top="190" left="85" width="345" height="15" font="1">び数値予報モデルを実行、という繰り返し計算にな</text>
+<text top="211" left="85" width="345" height="15" font="1">る。これ以上繰り返しても評価関数の値が小さくな</text>
+<text top="232" left="85" width="345" height="15" font="1">らないと判断されたところ、あるいは一定以上の回</text>
+<text top="253" left="85" width="353" height="15" font="1">数の繰り返し計算が行われたところで終了となり、</text>
+<text top="274" left="85" width="345" height="15" font="1">その時に保持している値が最終的に解析値として</text>
+<text top="295" left="85" width="345" height="15" font="1">出力される。数値予報モデルを繰り返し実行するこ</text>
+<text top="316" left="85" width="345" height="15" font="1">とになるためその計算量は膨大であり、計算量を減</text>
+<text top="337" left="85" width="345" height="15" font="1">らすために、第一推定値を求めるモデル（アウター</text>
+<text top="358" left="85" width="345" height="15" font="1">モデル）の解像度よりも、繰り返し計算で使われる</text>
+<text top="379" left="85" width="345" height="15" font="1">モデル（インナーモデル）の解像度を落として計算</text>
+<text top="400" left="85" width="210" height="15" font="1">するという手法が用いられる。</text>
+<text top="397" left="295" width="4" height="20" font="1"> </text>
+<text top="418" left="100" width="4" height="20" font="1"> </text>
+<text top="441" left="85" width="132" height="16" font="2">3.2.2  3次元変分法 </text>
+<text top="461" left="100" width="330" height="20" font="1">4次元変分法では、空間の3次元に時間軸の1次元</text>
+<text top="485" left="85" width="60" height="15" font="1">を加えた</text>
+<text top="482" left="145" width="285" height="20" font="1">4次元で解析を行うが「3次元変分法」では</text>
+<text top="506" left="85" width="345" height="15" font="1">大気状態の時間変化は考慮せずに、様々な観測が解</text>
+<text top="527" left="85" width="345" height="15" font="1">析時刻に得られたと仮定して、その時刻の大気の場</text>
+<text top="548" left="85" width="345" height="15" font="1">を解析する。評価関数を用いて繰り返し計算により</text>
+<text top="569" left="85" width="137" height="15" font="1">解析値を求める点は</text>
+<text top="566" left="223" width="207" height="20" font="1">4次元変分法と同様だが、数値</text>
+<text top="590" left="85" width="360" height="15" font="1">予報モデルを実行しないため、その計算量が少ない。</text>
+<text top="611" left="85" width="345" height="15" font="1">その反面、大気の場の力学的な時間変化が考慮され</text>
+<text top="632" left="85" width="345" height="15" font="1">ないため、必ずしも力学的にバランスのとれた解析</text>
+<text top="653" left="85" width="240" height="15" font="1">値が得られないと言う欠点がある。</text>
+<text top="650" left="325" width="4" height="20" font="1"> </text>
+<text top="671" left="100" width="330" height="20" font="1">3次元変分法は、より迅速な処理が求められる局</text>
+<text top="695" left="85" width="285" height="15" font="1">地解析と毎時大気解析で用いられている。</text>
+<text top="692" left="370" width="4" height="20" font="1"> </text>
+<text top="713" left="100" width="4" height="20" font="1"> </text>
+<text top="736" left="85" width="124" height="16" font="2">3.2.3  最適内挿法 </text>
+<text top="758" left="100" width="330" height="15" font="1">「最適内挿法」は、変分法よりも前に主流だった</text>
+<text top="779" left="85" width="345" height="15" font="1">解析手法である。この手法では、観測データの第一</text>
+<text top="800" left="85" width="345" height="15" font="1">推定値からのずれを、観測誤差や予報誤差の統計情</text>
+<text top="821" left="85" width="345" height="15" font="1">報を考慮して第一推定値の格子に内挿し、第一推定</text>
+<text top="106" left="462" width="345" height="15" font="1">値を修正する。この処理に使用される観測は、モデ</text>
+<text top="127" left="462" width="345" height="15" font="1">ルで扱われる気温や風、湿度などの物理量の観測で</text>
+<text top="148" left="462" width="345" height="15" font="1">なければならない。このため、衛星リモートセンシ</text>
+<text top="169" left="462" width="345" height="15" font="1">ングで得られる放射輝度温度などの観測は、直接は</text>
+<text top="190" left="462" width="345" height="15" font="1">利用できず、これらを利用するためには何らかの手</text>
+<text top="211" left="462" width="345" height="15" font="1">法でモデル物理量に事前に変換する必要がある。そ</text>
+<text top="232" left="462" width="345" height="15" font="1">の際に誤差が増大する懸念があるため、大量の衛星</text>
+<text top="253" left="462" width="352" height="15" font="1">観測データが得られる今日では大きな制約である。</text>
+<text top="250" left="807" width="4" height="20" font="1"> </text>
+<text top="274" left="477" width="330" height="15" font="1">現業の大気のデータ同化ではほとんど用いられ</text>
+<text top="295" left="462" width="345" height="15" font="1">なくなったが、力学的なバランスを重視しない地上</text>
+<text top="316" left="462" width="345" height="15" font="1">解析や積雪解析、海面水温解析などにおいては使用</text>
+<text top="337" left="462" width="90" height="15" font="1">されている。</text>
+<text top="334" left="553" width="4" height="20" font="1"> </text>
+<text top="355" left="462" width="4" height="20" font="1"> </text>
+<text top="378" left="462" width="171" height="16" font="2">3.3  気象庁のデータ同化 </text>
+<text top="401" left="477" width="330" height="15" font="1">ここでは、気象庁で現業的に実施されているデー</text>
+<text top="422" left="462" width="221" height="15" font="1">タ同化の概略について述べる。表</text>
+<text top="419" left="684" width="123" height="20" font="1">3.3.1に気象庁のデ</text>
+<text top="443" left="462" width="345" height="15" font="1">ータ同化についてまとめる。なお観測データ打ち切</text>
+<text top="464" left="462" width="345" height="15" font="1">り時間とは、解析時刻から実際にデータ同化処理を</text>
+<text top="485" left="462" width="345" height="15" font="1">開始するまでの時間である。一般に観測データは多</text>
+<text top="506" left="462" width="345" height="15" font="1">ければ多いほど解析値の精度は良いことから、なる</text>
+<text top="527" left="462" width="345" height="15" font="1">べく打ち切り時間を長く取ることが望ましい。しか</text>
+<text top="548" left="462" width="345" height="15" font="1">し、迅速に処理をしてプロダクトを提供する必要が</text>
+<text top="569" left="462" width="352" height="15" font="1">ある場合は、打ち切り時間が短く設定されている。</text>
+<text top="566" left="807" width="4" height="20" font="1"> </text>
+<text top="587" left="477" width="4" height="20" font="1"> </text>
+<text top="610" left="462" width="109" height="16" font="2">3.3.1  全球解析 </text>
+<text top="632" left="477" width="330" height="15" font="1">全球解析は地球大気全体の解析であり、大気の解</text>
+<text top="653" left="462" width="76" height="15" font="1">析手法には</text>
+<text top="650" left="539" width="272" height="20" font="1">4次元変分法を用いている（門脇  2005; </text>
+<text top="674" left="462" width="76" height="15" font="1">西嶋・室井</text>
+<text top="672" left="539" width="269" height="20" font="1">  2006）が、大気解析で解析されない地</text>
+<text top="695" left="462" width="345" height="15" font="1">上の気温や風などの解析には最適内挿法を利用し</text>
+<text top="716" left="462" width="60" height="15" font="1">ている。</text>
+<text top="714" left="523" width="4" height="20" font="1"> </text>
+<text top="737" left="477" width="15" height="15" font="1">第</text>
+<text top="735" left="492" width="315" height="20" font="1">1.7節でも述べたとおり、予報モデルに初期値を</text>
+<text top="758" left="462" width="345" height="15" font="1">提供するための「全球速報解析」と、データ打ち切</text>
+<text top="779" left="462" width="345" height="15" font="1">り時間を長く確保して解析予報サイクルとしての</text>
+<text top="800" left="462" width="275" height="15" font="1">精度を重視した「全球サイクル解析」の</text>
+<text top="798" left="738" width="69" height="20" font="1">2種類の運</text>
+<text top="821" left="462" width="135" height="15" font="1">用が行われている。</text>
+<text top="818" left="598" width="4" height="20" font="1"> </text>
+<text top="842" left="448" width="4" height="18" font="4"> </text>
+<text top="863" left="269" width="14" height="13" font="4">表</text>
+<text top="860" left="286" width="346" height="18" font="4">3.3.1  気象庁の主なデータ同化（2012 年 10 月末現在） </text>
+<text top="879" left="110" width="4" height="18" font="4"> </text>
+<text top="882" left="227" width="54" height="13" font="4">全球解析</text>
+<text top="879" left="281" width="4" height="18" font="4"> </text>
+<text top="882" left="419" width="54" height="13" font="4">メソ解析</text>
+<text top="879" left="473" width="4" height="18" font="4"> </text>
+<text top="882" left="610" width="54" height="13" font="4">局地解析</text>
+<text top="879" left="664" width="4" height="18" font="4"> </text>
+<text top="900" left="110" width="95" height="13" font="4">データ同化手法</text>
+<text top="898" left="205" width="4" height="18" font="4"> </text>
+<text top="898" left="227" width="82" height="18" font="4">4 次元変分法 </text>
+<text top="898" left="419" width="82" height="18" font="4">4 次元変分法 </text>
+<text top="898" left="610" width="82" height="18" font="4">3 次元変分法 </text>
+<text top="919" left="110" width="41" height="13" font="4">解像度</text>
+<text top="916" left="150" width="4" height="18" font="4"> </text>
+<text top="916" left="227" width="162" height="18" font="4">TL959（約 20km）  60 層 </text>
+<text top="916" left="419" width="67" height="18" font="4">5km 50 層 </text>
+<text top="916" left="610" width="67" height="18" font="4">5km 50 層 </text>
+<text top="938" left="110" width="101" height="13" font="4">インナーモデル</text>
+<text top="956" left="110" width="54" height="13" font="4">の解像度</text>
+<text top="953" left="164" width="4" height="18" font="4"> </text>
+<text top="935" left="227" width="162" height="18" font="4">TL319（約 55km）  60 層 </text>
+<text top="935" left="419" width="74" height="18" font="4">15km 50 層 </text>
+<text top="935" left="610" width="11" height="18" font="4">– </text>
+<text top="975" left="110" width="54" height="13" font="4">解析時刻</text>
+<text top="972" left="164" width="4" height="18" font="4"> </text>
+<text top="972" left="227" width="120" height="18" font="4">00, 06, 12, 18 UTC </text>
+<text top="972" left="419" width="179" height="18" font="4">00, 03, 06, 09, 12, 15, 18, 21 </text>
+<text top="990" left="419" width="33" height="18" font="4">UTC </text>
+<text top="972" left="610" width="180" height="18" font="4">00, 03, 06, 09, 12, 15, 18, 21 </text>
+<text top="990" left="610" width="33" height="18" font="4">UTC </text>
+<text top="1011" left="110" width="95" height="13" font="4">同化ウィンドウ</text>
+<text top="1009" left="205" width="4" height="18" font="4"> </text>
+<text top="1011" left="227" width="81" height="13" font="4">各解析時刻の</text>
+<text top="1009" left="312" width="82" height="18" font="4">3 時間前から </text>
+<text top="1027" left="227" width="82" height="18" font="4">3 時間後まで </text>
+<text top="1011" left="419" width="81" height="13" font="4">各解析時刻の</text>
+<text top="1009" left="503" width="82" height="18" font="4">3 時間前から </text>
+<text top="1029" left="419" width="81" height="13" font="4">解析時刻まで</text>
+<text top="1027" left="500" width="4" height="18" font="4"> </text>
+<text top="1009" left="610" width="11" height="18" font="4">– </text>
+<text top="1048" left="110" width="68" height="13" font="4">第一推定値</text>
+<text top="1045" left="177" width="4" height="18" font="4"> </text>
+<text top="1048" left="227" width="68" height="13" font="4">解析時刻の</text>
+<text top="1045" left="298" width="105" height="18" font="4">6 時間前を初期値</text>
+<text top="1066" left="227" width="149" height="13" font="4">とする全球モデル予報値</text>
+<text top="1063" left="376" width="4" height="18" font="4"> </text>
+<text top="1048" left="419" width="68" height="13" font="4">解析時刻の</text>
+<text top="1045" left="489" width="105" height="18" font="4">3 時間前を初期値</text>
+<text top="1066" left="419" width="149" height="13" font="4">とするメソモデル予報値</text>
+<text top="1063" left="568" width="4" height="18" font="4"> </text>
+<text top="1048" left="610" width="68" height="13" font="4">解析時刻の</text>
+<text top="1045" left="681" width="105" height="18" font="4">3 時間前を初期値</text>
+<text top="1066" left="610" width="149" height="13" font="4">とするメソモデル予報値</text>
+<text top="1063" left="759" width="4" height="18" font="4"> </text>
+<text top="1085" left="110" width="101" height="13" font="4">観測データ打ち</text>
+<text top="1103" left="110" width="54" height="13" font="4">切り時間</text>
+<text top="1100" left="164" width="4" height="18" font="4"> </text>
+<text top="1085" left="227" width="68" height="13" font="4">速報解析：</text>
+<text top="1082" left="295" width="77" height="18" font="4">2 時間 20 分 </text>
+<text top="1103" left="227" width="95" height="13" font="4">サイクル解析：</text>
+<text top="1100" left="322" width="4" height="18" font="4"> </text>
+<text top="1118" left="250" width="156" height="18" font="4">11 時間 50 分(00,12UTC) </text>
+<text top="1136" left="257" width="150" height="18" font="4">7 時間 50 分(06,18UTC) </text>
+<text top="1082" left="419" width="36" height="18" font="4">50 分 </text>
+<text top="1082" left="610" width="36" height="18" font="4">30 分 </text>
+<text top="1155" left="177" width="4" height="18" font="4"> </text>
+<text top="1155" left="322" width="4" height="18" font="4"> </text>
+<text top="1155" left="527" width="4" height="18" font="4"> </text>
+<text top="1155" left="718" width="4" height="18" font="4"> </text>
+<text top="1174" left="177" width="4" height="18" font="4"> </text>
+<text top="1174" left="279" width="4" height="18" font="4"> </text>
+<text top="1174" left="446" width="4" height="18" font="4"> </text>
+<text top="1174" left="638" width="4" height="18" font="4"> </text>
+<text top="1229" left="150" width="4" height="18" font="4"> </text>
+<text top="1193" left="279" width="4" height="18" font="4"> </text>
+<text top="1193" left="454" width="4" height="18" font="4"> </text>
+<text top="1193" left="615" width="4" height="18" font="4"> </text>
+<text top="1247" left="150" width="4" height="18" font="4"> </text>
+<text top="1247" left="227" width="4" height="18" font="4"> </text>
+<text top="1247" left="419" width="4" height="18" font="4"> </text>
+<text top="1247" left="610" width="4" height="18" font="4"> </text>
+</page>
+<page number="4" position="absolute" top="0" left="0" height="1262" width="892">
+	<fontspec id="13" size="11" family="Times" color="#000000"/>
+	<fontspec id="14" size="11" family="Times" color="#4bacc6"/>
+	<fontspec id="15" size="11" family="Times" color="#4bacc6"/>
+<text top="106" left="100" width="330" height="15" font="1">速報解析による解析値は全球モデル、週間アンサ</text>
+<text top="127" left="85" width="345" height="15" font="1">ンブル予報、台風アンサンブル予報の初期値に使わ</text>
+<text top="148" left="85" width="345" height="15" font="1">れる。地上解析値は数値予報モデルの初期値として</text>
+<text top="169" left="85" width="120" height="15" font="1">は用いられない。</text>
+<text top="166" left="205" width="4" height="20" font="1"> </text>
+<text top="187" left="100" width="4" height="20" font="1"> </text>
+<text top="210" left="85" width="101" height="16" font="2">3.3.2  メソ解析 </text>
+<text top="233" left="100" width="330" height="15" font="1">メソ解析は日本を中心とする東アジア領域の大</text>
+<text top="254" left="85" width="345" height="15" font="1">気解析であり、全球解析と同様、大気の解析手法に</text>
+<text top="275" left="85" width="15" height="15" font="1">は</text>
+<text top="272" left="100" width="330" height="20" font="1">4次元変分法を用いている（本田・澤田  2008;  本</text>
+<text top="296" left="85" width="61" height="15" font="1">田・澤田</text>
+<text top="293" left="146" width="284" height="20" font="1">  2009）が、大気解析で解析されない地上</text>
+<text top="317" left="85" width="345" height="15" font="1">の解析には最適内挿法を利用している。解析値はメ</text>
+<text top="338" left="85" width="345" height="15" font="1">ソモデルの初期値に使われる。地上解析値は数値予</text>
+<text top="359" left="85" width="285" height="15" font="1">報モデルの初期値としては用いられない。</text>
+<text top="356" left="370" width="4" height="20" font="1"> </text>
+<text top="380" left="100" width="330" height="15" font="1">全球速報解析よりも観測データ打ち切り時間は</text>
+<text top="401" left="85" width="302" height="15" font="1">短く設定されているが、レーダー反射強度や</text>
+<text top="398" left="387" width="43" height="20" font="1">GNSS</text>
+<text top="422" left="85" width="137" height="15" font="1">可降水量データ（第</text>
+<text top="419" left="223" width="207" height="20" font="1">2章参照）など、全球解析では</text>
+<text top="443" left="85" width="345" height="15" font="1">利用されていない観測データが同化されている（石</text>
+<text top="464" left="85" width="15" height="15" font="1">川</text>
+<text top="461" left="100" width="330" height="20" font="1">  2010;  幾田  2011）。また最近では、衛星データ</text>
+<text top="485" left="85" width="345" height="15" font="1">の利用も輝度温度データを直接同化するなど徐々</text>
+<text top="106" left="462" width="150" height="15" font="1">に充実している（計盛</text>
+<text top="103" left="613" width="67" height="20" font="1">  2011）。 </text>
+<text top="124" left="477" width="4" height="20" font="1"> </text>
+<text top="147" left="462" width="109" height="16" font="2">3.3.3  局地解析 </text>
+<text top="170" left="477" width="330" height="15" font="1">局地解析は日本列島を覆う東アジア領域の大気</text>
+<text top="191" left="462" width="229" height="15" font="1">解析であり、解析手法としては、</text>
+<text top="188" left="692" width="115" height="20" font="1">3次元変分法と予</text>
+<text top="212" left="462" width="30" height="15" font="1">報を</text>
+<text top="209" left="493" width="314" height="20" font="1">1時間毎に繰り返す手法を用いている（本研修</text>
+<text top="233" left="462" width="75" height="15" font="1">テキスト第</text>
+<text top="230" left="538" width="270" height="20" font="1">2部第2.1節参照）。その解析値は局地モデ</text>
+<text top="254" left="462" width="165" height="15" font="1">ルの初期値に使われる。</text>
+<text top="251" left="628" width="4" height="20" font="1"> </text>
+<text top="275" left="477" width="330" height="15" font="1">速報性を重視していることからデータ打ち切り</text>
+<text top="296" left="462" width="45" height="15" font="1">時間は</text>
+<text top="293" left="508" width="300" height="20" font="1">30分に設定している。全球解析やメソ解析で</text>
+<text top="317" left="462" width="345" height="15" font="1">は利用されていないアメダスデータを同化するこ</text>
+<text top="338" left="462" width="345" height="15" font="1">とにより、特に大気下層の解析精度向上を図ってい</text>
+<text top="359" left="462" width="30" height="15" font="1">る。</text>
+<text top="356" left="492" width="4" height="20" font="1"> </text>
+<text top="377" left="477" width="4" height="20" font="1"> </text>
+<text top="400" left="462" width="140" height="16" font="2">3.3.4  毎時大気解析 </text>
+<text top="422" left="477" width="330" height="15" font="1">日本を中心とする東アジア領域の大気解析であ</text>
+<text top="443" left="462" width="153" height="15" font="1">り、その解析手法には</text>
+<text top="440" left="616" width="192" height="20" font="1">3次元変分法が利用されてい</text>
+<text top="464" left="462" width="61" height="15" font="1">る（藤田</text>
+<text top="462" left="523" width="284" height="20" font="1">  2007;  藤田  2008）。この解析は速やかに</text>
+<text top="485" left="462" width="345" height="15" font="1">実況監視資料を提供することを目的としており、予</text>
+<text top="505" left="447" width="4" height="18" font="4"> </text>
+<text top="526" left="224" width="14" height="13" font="4">表</text>
+<text top="523" left="241" width="436" height="18" font="4">3.4.1  気象庁のデータ同化で同化される観測要素（2012 年 4 月現在） </text>
+<text top="1128" left="792" width="4" height="20" font="1"> </text>
+<text top="621" left="232" width="47" height="13" font="4">種　　別</text>
+<text top="605" left="351" width="13" height="13" font="4">気</text>
+<text top="621" left="353" width="9" height="13" font="4">　</text>
+<text top="637" left="351" width="13" height="13" font="4">圧</text>
+<text top="605" left="405" width="13" height="13" font="4">気</text>
+<text top="621" left="407" width="9" height="13" font="4">　</text>
+<text top="637" left="405" width="13" height="13" font="4">温</text>
+<text top="621" left="464" width="13" height="13" font="4">風</text>
+<text top="605" left="518" width="13" height="13" font="4">湿</text>
+<text top="621" left="520" width="9" height="13" font="4">　</text>
+<text top="637" left="518" width="13" height="13" font="4">度</text>
+<text top="597" left="566" width="13" height="13" font="4">可</text>
+<text top="613" left="566" width="13" height="13" font="4">降</text>
+<text top="629" left="566" width="13" height="13" font="4">水</text>
+<text top="645" left="566" width="13" height="13" font="4">量</text>
+<text top="605" left="614" width="13" height="13" font="4">降</text>
+<text top="621" left="614" width="13" height="13" font="4">水</text>
+<text top="637" left="614" width="13" height="13" font="4">量</text>
+<text top="589" left="673" width="9" height="13" font="4">ド</text>
+<text top="596" left="677" width="0" height="13" font="4">ッ</text>
+<text top="621" left="672" width="12" height="13" font="4">プ</text>
+<text top="637" left="672" width="11" height="17" font="4">ラー</text>
+<text top="614" left="654" width="13" height="13" font="4">速</text>
+<text top="630" left="654" width="13" height="13" font="4">度</text>
+<text top="597" left="710" width="13" height="13" font="4">放</text>
+<text top="613" left="710" width="13" height="13" font="4">射</text>
+<text top="629" left="710" width="13" height="13" font="4">輝</text>
+<text top="645" left="710" width="13" height="13" font="4">度</text>
+<text top="605" left="758" width="13" height="13" font="4">屈</text>
+<text top="621" left="758" width="13" height="13" font="4">折</text>
+<text top="637" left="758" width="13" height="13" font="4">率</text>
+<text top="674" left="178" width="60" height="13" font="4"> 地上観測</text>
+<text top="676" left="348" width="21" height="12" font="13"><b>GM</b></text>
+<text top="676" left="397" width="21" height="12" font="14"><b>GM</b></text>
+<text top="676" left="420" width="8" height="12" font="13"><b>L</b></text>
+<text top="676" left="457" width="21" height="12" font="14"><b>GM</b></text>
+<text top="676" left="479" width="8" height="12" font="13"><b>L</b></text>
+<text top="696" left="178" width="88" height="13" font="4"> 地上自動観測</text>
+<text top="698" left="403" width="19" height="12" font="13"><b>LQ</b></text>
+<text top="698" left="462" width="19" height="12" font="13"><b>LQ</b></text>
+<text top="719" left="178" width="60" height="13" font="4"> 海上観測</text>
+<text top="721" left="348" width="21" height="12" font="13"><b>GM</b></text>
+<text top="721" left="402" width="21" height="12" font="14"><b>GM</b></text>
+<text top="721" left="461" width="21" height="12" font="14"><b>GM</b></text>
+<text top="741" left="178" width="74" height="13" font="4"> 航空機観測</text>
+<text top="743" left="392" width="41" height="12" font="13"><b>GMLQ</b></text>
+<text top="743" left="451" width="41" height="12" font="13"><b>GMLQ</b></text>
+<text top="763" left="178" width="60" height="13" font="4"> 高層観測</text>
+<text top="765" left="348" width="21" height="12" font="13"><b>GM</b></text>
+<text top="765" left="402" width="21" height="12" font="13"><b>GM</b></text>
+<text top="765" left="461" width="21" height="12" font="13"><b>GM</b></text>
+<text top="765" left="514" width="21" height="12" font="13"><b>GM</b></text>
+<text top="786" left="178" width="74" height="13" font="4"> 高層風観測</text>
+<text top="787" left="348" width="21" height="12" font="13"><b>GM</b></text>
+<text top="787" left="461" width="21" height="12" font="13"><b>GM</b></text>
+<text top="808" left="178" width="118" height="13" font="4"> ウインドプロファイラ</text>
+<text top="810" left="451" width="41" height="12" font="13"><b>GMLQ</b></text>
+<text top="830" left="178" width="88" height="13" font="4"> ドップラー速度</text>
+<text top="832" left="655" width="31" height="12" font="13"><b>MLQ</b></text>
+<text top="852" left="178" width="60" height="13" font="4"> 解析雨量</text>
+<text top="854" left="615" width="11" height="12" font="13"><b>M</b></text>
+<text top="875" left="178" width="147" height="13" font="4"> 3次元レーダー反射強度</text>
+<text top="877" left="519" width="11" height="12" font="13"><b>M</b></text>
+<text top="897" left="178" width="68" height="13" font="4"> 地上GNSS</text>
+<text top="899" left="563" width="20" height="12" font="13"><b>ML</b></text>
+<text top="919" left="112" width="150" height="13" font="4">疑似観測  台風ボーガス</text>
+<text top="921" left="348" width="21" height="12" font="13"><b>GM</b></text>
+<text top="921" left="461" width="21" height="12" font="13"><b>GM</b></text>
+<text top="942" left="178" width="74" height="13" font="4"> 大気追跡風</text>
+<text top="944" left="455" width="33" height="12" font="13"><b>GMQ</b></text>
+<text top="964" left="178" width="116" height="13" font="4"> 晴天放射輝度温度</text>
+<text top="966" left="707" width="21" height="12" font="13"><b>GM</b></text>
+<text top="986" left="178" width="102" height="13" font="4"> 極域大気追跡風</text>
+<text top="988" left="466" width="10" height="12" font="13"><b>G</b></text>
+<text top="1009" left="178" width="117" height="13" font="4"> マイクロ波サウンダ</text>
+<text top="1010" left="707" width="21" height="12" font="13"><b>GM</b></text>
+<text top="1031" left="178" width="84" height="13" font="4"> 赤外サウンダ</text>
+<text top="1053" left="178" width="124" height="13" font="4"> マイクロ波イメージャ</text>
+<text top="1055" left="615" width="11" height="12" font="13"><b>M</b></text>
+<text top="1055" left="707" width="21" height="12" font="13"><b>GM</b></text>
+<text top="1075" left="178" width="107" height="13" font="4"> マイクロ波散乱計</text>
+<text top="1077" left="466" width="10" height="12" font="13"><b>G</b></text>
+<text top="1098" left="178" width="91" height="13" font="4">GNSS掩蔽観測</text>
+<text top="1100" left="760" width="10" height="12" font="13"><b>G</b></text>
+<text top="1125" left="178" width="338" height="12" font="13"><b>G:</b>全球解析<b>; M:</b>メソ解析<b>; L:</b>局地解析<b>; Q:</b>毎時大気解析<b>; </b></text>
+<text top="1123" left="517" width="128" height="14" font="15">青字<b>:</b>地上解析で利用</text>
+<text top="1034" left="119" width="41" height="13" font="4">低軌道</text>
+<text top="1050" left="126" width="27" height="13" font="4">衛星</text>
+<text top="552" left="408" width="69" height="13" font="4">従来型観測</text>
+<text top="568" left="401" width="82" height="13" font="4">（モデル変数）</text>
+<text top="560" left="629" width="82" height="13" font="4">その他の観測</text>
+<text top="730" left="112" width="55" height="13" font="4">直接観測</text>
+<text top="836" left="126" width="27" height="13" font="4">地上</text>
+<text top="852" left="117" width="45" height="13" font="4">リモート</text>
+<text top="869" left="109" width="61" height="13" font="4">センシング</text>
+<text top="953" left="112" width="55" height="13" font="4">静止衛星</text>
+</page>
+<page number="5" position="absolute" top="0" left="0" height="1262" width="892">
+<text top="106" left="85" width="285" height="15" font="1">報モデルの初期値としては利用されない。</text>
+<text top="103" left="370" width="4" height="20" font="1"> </text>
+<text top="127" left="100" width="330" height="15" font="1">迅速性をより重視するため、観測データ打ち切り</text>
+<text top="148" left="85" width="45" height="15" font="1">時間は</text>
+<text top="145" left="130" width="300" height="20" font="1">20分と、局地解析の30分よりもさらに短く設</text>
+<text top="169" left="85" width="345" height="15" font="1">定している。さらに実況監視資料という毎時大気解</text>
+<text top="190" left="85" width="345" height="15" font="1">析の利用目的を重視し、観測誤差を小さく設定する</text>
+<text top="211" left="85" width="345" height="15" font="1">ことで、解析値が観測値に近い値となるようにして</text>
+<text top="232" left="85" width="45" height="15" font="1">いる。</text>
+<text top="229" left="130" width="4" height="20" font="1"> </text>
+<text top="250" left="100" width="4" height="20" font="1"> </text>
+<text top="273" left="85" width="181" height="16" font="2">3.3.5  その他のデータ同化 </text>
+<text top="296" left="85" width="345" height="15" font="1">  海面水温解析によって海面水温の解析値が作成</text>
+<text top="317" left="85" width="118" height="15" font="1">される（栗原ほか</text>
+<text top="314" left="203" width="227" height="20" font="1">  2006）。その解析値は全球モデル</text>
+<text top="338" left="85" width="345" height="15" font="1">をはじめとする各種数値予報モデルの下部境界条</text>
+<text top="359" left="85" width="150" height="15" font="1">件として用いられる。</text>
+<text top="356" left="235" width="4" height="20" font="1"> </text>
+<text top="380" left="85" width="345" height="15" font="1">  積雪解析（全球モデル用は積雪深解析、メソモデ</text>
+<text top="401" left="85" width="345" height="15" font="1">ル用は積雪域解析）によって、積雪深あるいは積雪</text>
+<text top="422" left="85" width="208" height="15" font="1">域の解析値が作成される（中村</text>
+<text top="419" left="294" width="136" height="20" font="1">  2009）。その解析値</text>
+<text top="443" left="85" width="345" height="15" font="1">は各数値予報モデルの地表面状態として用いられ</text>
+<text top="464" left="85" width="280" height="15" font="1">る。利用される観測データは、地上観測</text>
+<text top="461" left="366" width="64" height="20" font="1">(SYNOP)</text>
+<text top="485" left="85" width="194" height="15" font="1">であるが、国内のアメダスや</text>
+<text top="482" left="280" width="150" height="20" font="1">DMSP衛星による観測</text>
+<text top="506" left="85" width="165" height="15" font="1">も一部では用いられる。</text>
+<text top="503" left="250" width="4" height="20" font="1"> </text>
+<text top="527" left="85" width="345" height="15" font="1">  このほか、海洋データ同化によって海洋の解析値</text>
+<text top="548" left="85" width="345" height="15" font="1">が作成されており、季節予報モデルの海洋の初期値</text>
+<text top="569" left="85" width="120" height="15" font="1">として使われる。</text>
+<text top="566" left="205" width="4" height="20" font="1"> </text>
+<text top="587" left="100" width="4" height="20" font="1"> </text>
+<text top="610" left="85" width="242" height="16" font="2">3.4  各解析で用いられる観測データ </text>
+<text top="632" left="100" width="15" height="15" font="1">表</text>
+<text top="629" left="116" width="314" height="20" font="1">3.4.1に各解析で実際に同化されている観測と</text>
+<text top="653" left="85" width="121" height="15" font="1">観測要素を示す（</text>
+<text top="650" left="206" width="224" height="20" font="1">2012年4月現在）。「従来型観測」</text>
+<text top="674" left="85" width="345" height="15" font="1">はモデル物理量の観測を、「その他の観測」はそう</text>
+<text top="695" left="85" width="345" height="15" font="1">でないものを示している。地上リモートセンシング</text>
+<text top="716" left="85" width="353" height="15" font="1">や衛星観測はその多くがモデルの物理量ではなく、</text>
+<text top="737" left="85" width="360" height="15" font="1">観測量がその観測要素で直接同化されている。なお、</text>
+<text top="758" left="85" width="180" height="15" font="1">各観測の詳細については第</text>
+<text top="755" left="265" width="148" height="20" font="1">2章を参照されたい。 </text>
+<text top="777" left="85" width="4" height="20" font="1"> </text>
+<text top="799" left="85" width="156" height="16" font="2">3.5  データ同化の将来 </text>
+<text top="822" left="100" width="330" height="15" font="1">数値予報におけるデータ同化は、観測データの持</text>
+<text top="843" left="85" width="345" height="15" font="1">つ情報を数値予報モデルの初期値に適切に反映さ</text>
+<text top="864" left="85" width="345" height="15" font="1">せる重要な処理であり、この技術が極めて重要であ</text>
+<text top="885" left="85" width="345" height="15" font="1">る。またこれからもリモートセンシング技術を応用</text>
+<text top="906" left="85" width="345" height="15" font="1">した地球観測が幅広く行われることから、データ同</text>
+<text top="927" left="85" width="345" height="15" font="1">化技術の研究開発は今後一層盛んになると予想さ</text>
+<text top="948" left="85" width="45" height="15" font="1">れる。</text>
+<text top="945" left="130" width="4" height="20" font="1"> </text>
+<text top="969" left="100" width="330" height="15" font="1">またこれまで主に、気象や海洋分野で盛んに取り</text>
+<text top="990" left="85" width="345" height="15" font="1">組まれてきたデータ同化は、数値シミュレーション</text>
+<text top="1011" left="85" width="345" height="15" font="1">技術の発展により他の様々な分野でも注目されつ</text>
+<text top="1032" left="85" width="345" height="15" font="1">つある。分野を超えた技術協力・連携も今後進むで</text>
+<text top="1053" left="85" width="60" height="15" font="1">あろう。</text>
+<text top="1050" left="145" width="4" height="20" font="1"> </text>
+<text top="1074" left="100" width="330" height="15" font="1">データ同化の大きな課題は、背景誤差をどのよう</text>
+<text top="1095" left="85" width="345" height="15" font="1">に設定するかということである。現在は過去のある</text>
+<text top="1116" left="85" width="345" height="15" font="1">期間の予報モデルの誤差を蓄積・統計処理し、それ</text>
+<text top="1137" left="85" width="345" height="15" font="1">を背景誤差として利用している。本来は一様でなく</text>
+<text top="106" left="462" width="345" height="15" font="1">流れに依存し、場所や時間によって異なると考える</text>
+<text top="127" left="462" width="327" height="15" font="1">のが自然である。これを合理的に求めるために、</text>
+<text top="127" left="777" width="30" height="15" font="1">「ア</text>
+<text top="148" left="462" width="225" height="15" font="1">ンサンブルカルマンフィルター」</text>
+<text top="148" left="675" width="84" height="15" font="1">（三好・本田</text>
+<text top="145" left="759" width="56" height="20" font="1">  2007）</text>
+<text top="169" left="462" width="290" height="15" font="1">という手法が注目されているほか、従来の</text>
+<text top="166" left="753" width="54" height="20" font="1">4次元変</text>
+<text top="190" left="462" width="345" height="15" font="1">分法と新しい手法との両方の長所を組み合わせ、</text>
+<text top="211" left="462" width="345" height="15" font="1">日々の大気状態を反映した背景誤差を用いること</text>
+<text top="232" left="462" width="345" height="15" font="1">で大気の力学バランスを考慮する「ハイブリッド同</text>
+<text top="253" left="462" width="345" height="15" font="1">化」も開発が行われており、今後もデータ同化技術</text>
+<text top="274" left="462" width="225" height="15" font="1">は大きく発展すると考えられる。</text>
+<text top="271" left="688" width="4" height="20" font="1"> </text>
+<text top="292" left="462" width="4" height="20" font="1"> </text>
+<text top="316" left="462" width="60" height="15" font="1">参考文献</text>
+<text top="313" left="523" width="4" height="20" font="1"> </text>
+<text top="337" left="462" width="61" height="15" font="1">幾田泰酵</text>
+<text top="334" left="523" width="284" height="20" font="1">, 2011: メソ解析におけるレーダー反射強</text>
+<text top="359" left="477" width="106" height="15" font="1">度データの同化</text>
+<text top="356" left="583" width="224" height="20" font="1">.  平成23年度数値予報研修テキス</text>
+<text top="381" left="477" width="15" height="15" font="1">ト</text>
+<text top="378" left="492" width="148" height="20" font="1">,  気象庁予報部, 9-12. </text>
+<text top="402" left="462" width="60" height="15" font="1">石川宜広</text>
+<text top="399" left="523" width="285" height="20" font="1">, 2010:  地上GPSデータのメソ解析での利</text>
+<text top="424" left="477" width="15" height="15" font="1">用</text>
+<text top="421" left="492" width="330" height="20" font="1">.  数値予報課報告・別冊第56号,  気象庁予報部,  </text>
+<text top="443" left="477" width="47" height="20" font="1">54-60. </text>
+<text top="467" left="462" width="61" height="15" font="1">計盛正博</text>
+<text top="465" left="523" width="284" height="20" font="1">, 2011: メソ解析における衛星観測輝度温</text>
+<text top="489" left="477" width="106" height="15" font="1">度データの同化</text>
+<text top="486" left="583" width="224" height="20" font="1">.  平成23年度数値予報研修テキス</text>
+<text top="511" left="477" width="15" height="15" font="1">ト</text>
+<text top="508" left="492" width="140" height="20" font="1">,  気象庁予報部, 3-8. </text>
+<text top="532" left="462" width="75" height="15" font="1">門脇隆志，</text>
+<text top="530" left="538" width="270" height="20" font="1">2005:  数値予報課報告・別冊第51号,  気</text>
+<text top="554" left="477" width="75" height="15" font="1">象庁予報部</text>
+<text top="551" left="553" width="82" height="20" font="1">, 100-105． </text>
+<text top="576" left="462" width="62" height="15" font="1">栗原幸雄</text>
+<text top="573" left="525" width="283" height="20" font="1">,  桜井敏之,  倉賀野連, 2006: 衛星マイク</text>
+<text top="597" left="477" width="330" height="15" font="1">ロ波放射計、衛星赤外放射計及び現場観測データ</text>
+<text top="619" left="477" width="220" height="15" font="1">を用いた全球日別海面水温解析</text>
+<text top="616" left="699" width="113" height="20" font="1">.  測候時報,  73, </text>
+<text top="638" left="477" width="57" height="20" font="1">S1-S18. </text>
+<text top="662" left="462" width="60" height="15" font="1">露木義，</text>
+<text top="659" left="523" width="285" height="20" font="1">1997:  変分法によるデータ同化.  数値予報</text>
+<text top="684" left="477" width="105" height="15" font="1">課報告・別冊第</text>
+<text top="681" left="583" width="216" height="20" font="1">43号,  気象庁予報部, 102-165． </text>
+<text top="706" left="462" width="60" height="15" font="1">露木義，</text>
+<text top="703" left="523" width="285" height="20" font="1">2002:  変分法によるデータ同化の基礎.  数</text>
+<text top="727" left="477" width="150" height="15" font="1">値予報課報告・別冊第</text>
+<text top="724" left="628" width="89" height="20" font="1">48号, 1-16． </text>
+<text top="749" left="462" width="45" height="15" font="1">中村貴</text>
+<text top="746" left="508" width="300" height="20" font="1">, 2009:  全球積雪深解析.  数値予報課報告・別</text>
+<text top="771" left="477" width="30" height="15" font="1">冊第</text>
+<text top="768" left="508" width="188" height="20" font="1">55号,  気象庁予報部, 11-14. </text>
+<text top="792" left="462" width="46" height="15" font="1">西嶋信</text>
+<text top="789" left="509" width="299" height="20" font="1">,  室井ちあし,  2006:  データ同化システムの</text>
+<text top="814" left="477" width="30" height="15" font="1">概要</text>
+<text top="811" left="508" width="300" height="20" font="1">.  平成18年度数値予報研修テキスト,  気象庁</text>
+<text top="836" left="477" width="45" height="15" font="1">予報部</text>
+<text top="833" left="522" width="54" height="20" font="1">, 11-13. </text>
+<text top="857" left="462" width="46" height="15" font="1">藤田匡</text>
+<text top="854" left="508" width="300" height="20" font="1">, 2007: 毎時大気解析の高度化.  平成19年度</text>
+<text top="879" left="477" width="150" height="15" font="1">数値予報研修テキスト</text>
+<text top="876" left="628" width="165" height="20" font="1">,  気象庁予報部, 98-101. </text>
+<text top="901" left="462" width="45" height="15" font="1">藤田匡</text>
+<text top="898" left="508" width="300" height="20" font="1">, 2008:  毎時大気解析の改良.平成20年度数値</text>
+<text top="922" left="477" width="120" height="15" font="1">予報研修テキスト</text>
+<text top="919" left="598" width="157" height="20" font="1">,  気象庁予報部, 58-61. </text>
+<text top="944" left="462" width="60" height="15" font="1">本田有機</text>
+<text top="941" left="523" width="289" height="20" font="1">,  澤田謙, 2008: 非静力学メソ4次元変分法.</text>
+<text top="966" left="477" width="30" height="15" font="1">平成</text>
+<text top="963" left="508" width="309" height="20" font="1">20年度数値予報研修テキスト,  気象庁予報部, </text>
+<text top="985" left="477" width="47" height="20" font="1">48-52. </text>
+<text top="1009" left="462" width="60" height="15" font="1">本田有機</text>
+<text top="1006" left="523" width="285" height="20" font="1">,  澤田謙, 2009: 非静力学メソ4次元変分法</text>
+<text top="1031" left="477" width="78" height="15" font="1">の現現業化</text>
+<text top="1028" left="556" width="256" height="20" font="1">.  平成21年度数値予報研修テキスト, </text>
+<text top="1052" left="477" width="90" height="15" font="1">気象庁予報部</text>
+<text top="1050" left="568" width="55" height="20" font="1">, 65-71. </text>
+<text top="1074" left="462" width="61" height="15" font="1">三好建正</text>
+<text top="1071" left="524" width="284" height="20" font="1">,  本田有機, 2007:  気象学におけるデータ</text>
+<text top="1096" left="477" width="30" height="15" font="1">同化</text>
+<text top="1093" left="508" width="122" height="20" font="1">.  天気, 34, 15-19. </text>
+<text top="1115" left="477" width="4" height="20" font="1"> </text>
+</page>
+</pdf2xml>
