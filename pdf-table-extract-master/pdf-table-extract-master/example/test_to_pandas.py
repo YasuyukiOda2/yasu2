@@ -2,7 +2,7 @@ import pandas as pd
 import pdftableextract as pdf
 
 pages = ["1"]
-cells = [pdf.process_page("example.pdf",p) for p in pages]
+cells = [pdf.process_page("kouku1.pdf",p) for p in pages]
 
 #flatten the cells structure
 cells = [item for sublist in cells for item in sublist ]
