@@ -17,4 +17,4 @@ li = pdf.table_to_list(cells, pages)[1]
 #data is row '2' through '-1'
 
 data =pd.DataFrame(li[2:-1], columns=li[1], index=[l[0] for l in li[2:-1]])
-print data
+data.to_csv('kouku1_sample1.csv')
