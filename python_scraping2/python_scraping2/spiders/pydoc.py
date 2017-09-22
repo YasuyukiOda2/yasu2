@@ -9,7 +9,7 @@ from ..selenium_middlewares import close_driver
 class PydocSpider(scrapy.Spider):
     name = 'pydoc'
     allowed_domains = ['docs.python.jp']
-    start_urls = ['https://docs.python.jp/3/index.html']
+    start_urls = ['https://docs.python.jp/3/genindex.html']
     custom_settings = {
         "DOWNLOADER_MIDDLEWARES": {
             "python_scraping2.selenium_middlewares.SeleniumMiddleware": 0,
@@ -23,7 +23,7 @@ class PydocSpider(scrapy.Spider):
         link_list = []
         for (title, link) in zip (response.css('ul.search a::text').extract(), response.css('ul.search a::attr("href")').extract()):
             title_list.append(title)
-            link_list.append(link)            
+            link_list.append(link)
             item['title'] = title_list
             item['link'] = link_list
         #searchKeyword()
