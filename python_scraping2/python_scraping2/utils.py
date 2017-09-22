@@ -3,6 +3,7 @@ import lxml.html
 import readability
 import requests
 import re
+from urllib.parse.urljoin
 
 # ReadabilityのDEBUG/INFOレベルのログを表示しないようにする
 logging.getLogger('readability.readability').setLevel(logging.WARNING)
@@ -29,4 +30,6 @@ def get_url(url, word):
             url_list.append(match_url.group(1))
         return url_list
 
-    return short_title, content_text
+def getExplain(request, url_list, w):
+    for url in url_list:
+        url = urljoin(request, url)

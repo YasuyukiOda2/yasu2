@@ -4,7 +4,7 @@ from scrapy.http import HtmlResponse
 from selenium.webdriver import PhantomJS
 from selenium.webdriver.common.keys import Keys
 import time
-from python_scraping2.utils import get_url
+from python_scraping2.utils import get_url, getExampleSentence
 
 driver = PhantomJS()
 words = ['for', 'print']
@@ -18,7 +18,7 @@ class SeleniumMiddleware(object):
             driver.find_element_by_link_text(H).click()
             url_now = driver.current_url
             url_list = get_url(url_now, w) #utils.get_url
-            getExampleSentence
+            getExampleSentence(request, url_list, w) #utils.getExampleSentence
 
         input_element.send_keys('for')
         input_element.send_keys(Keys.ENTER)
