@@ -1,19 +1,32 @@
 import logging
 import lxml.html
 import readability
+import requests
+import re
 
 # ReadabilityのDEBUG/INFOレベルのログを表示しないようにする
 logging.getLogger('readability.readability').setLevel(logging.WARNING)
 
-def get_content(html):
+def get_url(url, word):
     """
-    HTMLの文字列から（タイトル,本文）のタプルを取得する
+    キーワードに関する記述のあるurlを取得
     """
 
-    document = readability.Document(html)
-    content_html = document.summary()
-    # HTMLタグを除去して本文のテキストのみを取得する
-    content_text = lxml.html.fromstring(content_html).text_content().strip()
-    short_title = document.short_title()
+    # 空白・改行を除く本文を取得
+    r = requests.get(url)
+    r.encoding = r.apparent_encoding
+    text = r.text.strip()
+
+    # 正規表現でリンクを抽出
+    pattern1 = "<dt>\s*" + word + "\s*<dt/>"
+    pattern1_1 = pattern1 + "\s*<dd><dl>\s*<dt>(.*)\s*</dt>"
+    if re.search(pattern1_1, text).group(1):
+        text1_1 = re.search(pattern1_1, text).group(1)
+        pattern1_1_1 = '<a href="([^"]*)">'
+        url_iterater = re.finditer(pattern1_1_1, text1_1)
+        url_list = []
+        for match_url in url_iterater:
+            url_list.append(match_url.group(1))
+        return url_list
 
     return short_title, content_text

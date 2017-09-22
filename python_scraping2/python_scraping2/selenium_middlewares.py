@@ -4,13 +4,22 @@ from scrapy.http import HtmlResponse
 from selenium.webdriver import PhantomJS
 from selenium.webdriver.common.keys import Keys
 import time
+from python_scraping2.utils import get_url
 
 driver = PhantomJS()
+words = ['for', 'print']
+HEADS = ['F', 'P']
 
 class SeleniumMiddleware(object):
     def process_request(self, request, spider):
         driver.get(request.url)
-        input_element = driver.find_element_by_name('q')
+        driver.find_element_by_link_text('総索引').click()
+        for (H, w) in zip(HEADS, words):
+            driver.find_element_by_link_text(H).click()
+            url_now = driver.current_url
+            url_list = get_url(url_now, w) #utils.get_url
+            getExampleSentence
+
         input_element.send_keys('for')
         input_element.send_keys(Keys.ENTER)
         time.sleep(5)
@@ -19,7 +28,8 @@ class SeleniumMiddleware(object):
             encoding = 'utf-8',
             request = request)
 
-#def searchKeyword(): 
+
+#def searchKeyword():
 #    input_element = driver.find_element_by_name('q')
 #    input_element.send_keys('for')
 #    input_element.send_keys(Keys.ENTER)
@@ -39,3 +49,7 @@ class SeleniumMiddleware(object):
 
 def close_driver():
     driver.close()
+
+
+
+body > div.document > div.documentwrapper > div > div > table > tbody > tr > td:nth-child(2) > dl > dd:nth-child(48) > dl > dt > a:nth-child(1)

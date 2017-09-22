@@ -9,7 +9,7 @@ from ..selenium_middlewares import close_driver
 class PydocSpider(scrapy.Spider):
     name = 'pydoc'
     allowed_domains = ['docs.python.jp']
-    start_urls = ['https://docs.python.jp/3/genindex.html']
+    start_urls = ['https://docs.python.jp/3/']
     custom_settings = {
         "DOWNLOADER_MIDDLEWARES": {
             "python_scraping2.selenium_middlewares.SeleniumMiddleware": 0,
