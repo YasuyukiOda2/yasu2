@@ -17,18 +17,8 @@ class PydocSpider(scrapy.Spider):
         "DOWNLOAD_DELAY": 0.5,
     }
 
-    def parse(self, response):
-        item = TitleAndLink()
-        title_list = []
-        link_list = []
-        for (title, link) in zip (response.css('ul.search a::text').extract(), response.css('ul.search a::attr("href")').extract()):
-            title_list.append(title)
-            link_list.append(link)
-            item['title'] = title_list
-            item['link'] = link_list
-        #searchKeyword()
-        #item['title'] = getTitle()
-        #item['link'] = getLink()
+    def parse(self, explain_list):
+        item['explain'] = explain_list
         yield item
 
     def closed(self, reason):

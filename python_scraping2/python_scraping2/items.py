@@ -17,3 +17,5 @@ class TitleAndLink(scrapy.Item):
     title = scrapy.Field()
     link = scrapy.Field()
 
+class getExplain(scrapy.Item):
+    explain = scrapy.Field()
